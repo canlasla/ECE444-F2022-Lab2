@@ -1,5 +1,5 @@
-{% extends "bootstrap/base.html" %} {% block title %}Test{% endblock %} {% block
-navbar %}
+{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {%
+block title %}Test{% endblock %} {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
@@ -15,12 +15,13 @@ navbar %}
 {% endblock %} {% block content %}
 <div class="container">
 	<div class="page-header">
-		<h1>Hello, Lance!</h1>
+		<h1>Hello, {% if name%}{{name}}{%else%}Stranger{%endif%}!</h1>
 	</div>
 	<div>
 		<p>The local date and time is {{ moment(current_time).format('LLLL')}}.</p>
 		<p>That was {{ moment(current_time).fromNow(refresh=True)}}.</p>
 	</div>
+	<div>{{ wtf.quick_form(form)}}</div>
 </div>
 {% endblock %} {% block scripts %} {{ super() }} {{ moment.include_moment() }}
 {% endblock %}
